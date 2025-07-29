@@ -113,7 +113,7 @@ if st.button("🔄 Actualizar Resultados"):
     cluster_df = df_filtrado[['AVALÚO', 'AÑO']].dropna()
     if len(cluster_df) >= 3:
         scaled = StandardScaler().fit_transform(cluster_df)
-        kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
+        kmeans = KMeans(n_clusters=3, random_state=52, n_init=10)
         cluster_df['CLUSTER'] = kmeans.fit_predict(scaled)
         medios = cluster_df.groupby('CLUSTER')['AVALÚO'].mean().sort_values()
         etiquetas = {i: l for i, l in zip(medios.index, ['Económico', 'Intermedio', 'Lujo'])}
